@@ -1,0 +1,24 @@
+{
+  "name": "free-your-mind-project4",
+  "version": "1.0.0",
+  "description": "WDI-project4",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/candlewoodtoby/Free-Your-Mind-Project4.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/candlewoodtoby/Free-Your-Mind-Project4/issues"
+  },
+  "homepage": "https://github.com/candlewoodtoby/Free-Your-Mind-Project4#readme",
+  "dependencies": {
+    "ejs": "^2.3.4",
+    "express": "^4.13.3",
+    "express-ejs-layouts": "^1.1.0"
+  }
+}
