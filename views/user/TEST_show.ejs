@@ -1,0 +1,61 @@
+<h1>User Show Page</h1>
+
+<div class="container">
+  <div class="row">
+    <p>Username: <%= user.username %></p>
+    <p>Email: <%= user.email %></p>
+    <p>Password: <%= user.password %></p>
+    <p>UserId: <%= user.id %></p>
+  </div>
+
+  <div class="row">
+    <h1>TEST - Enter a Commitment</h1>
+    <form method="post" action="/api/commitment">
+      <div class="form-group">
+        <label>Description:</label>
+        <input name="description" type="text" placeholder="description" class="form-control"><br/>
+
+        <label>Actionable:</label>
+        <input name="actionable" type="boolean" placeholder="actionable? T/F" class="form-control"><br/>
+
+        <label>Trash:</label>
+        <input name="trash" type="boolean" placeholder="trash? T/F" class="form-control"><br/>
+
+        <label>Someday:</label>
+        <input name="someday" type="boolean" placeholder="someday? T/F" class="form-control"><br/>
+
+        <label>Reference:</label>
+        <input name="reference" type="boolean" placeholder="reference? T/F" class="form-control"><br/>
+
+        <label>Less Than 2:</label>
+        <input name="lessThanTwo" type="boolean" placeholder="less than two minutes? T/F" class="form-control"><br/>
+
+        <label>Do It Now:</label>
+        <input name="doItNow" type="boolean" placeholder="do it now? T/F" class="form-control"><br/>
+
+        <label>Do It Whenever:</label>
+        <input name="doItWhenever" type="boolean" placeholder="do it whenever? T/F" class="form-control"><br/>
+
+        <label>Do It Later:</label>
+        <input name="doItLater" type="boolean" placeholder="do it later? T/F" class="form-control"><br/>
+
+        <label>Delegate:</label>
+        <input name="delegate" type="boolean" placeholder="delegate? T/F" class="form-control"><br/>
+
+        <label>Delegate Name:</label>
+        <input name="delegateName" type="text" placeholder="delegate Name" class="form-control"><br/>
+
+        <label>Calendar:</label>
+        <input name="calendar" type="date" placeholder="Calendar Date" class="form-control"><br/>
+
+        <label>Completed:</label>
+        <input name="completed" type="boolean" placeholder="Completed? T/F" class="form-control"><br/>
+
+        <label>UserId:</label>
+        <input name="userId" type="hidden" value="<%= user.id %>">
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</div>
+

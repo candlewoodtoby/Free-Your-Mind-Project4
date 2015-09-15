@@ -15,6 +15,8 @@ app.use(bodyParser.urlencoded({extended:true}));
 
 
 app.use('/', pagesController);
+app.use('/logIn', pagesController);
+app.use('/signUp', pagesController);
 
 app.use('/api/user', userController);
 app.use('/api/commitment', commitmentController);
