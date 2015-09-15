@@ -7,58 +7,69 @@ var db = require('../models');
 router.get('/', function(req,res){
 
   db.user.findAll().then(function(users){
-
     //TEST LOOP
-    // if (users){
-    // users.forEach(function(taco){
-    // console.log('All users: ' + taco.id + '--'+ taco.username + '--' + taco.email + '--' + taco.password);
-    // res.send('All Users: ' + taco.username);
-    // })};
-    // res.send('found all users!');
+    if (users){
+    users.forEach(function(taco){
+    console.log('All users: ' + taco.id + '--'+ taco.username + '--' + taco.email + '--' + taco.password);
+    })};
+    res.send('found all users!');
   })
-
-  //TEST
-  // console.log("userController.js working!");
-  // res.send('userController.js works!');
-
 })
+
 
 //FIND one User
 router.get('/:userId',function(req,res){
 
-  db.user.find({where:{id:req.params.userId}}).then(function(user){
-
+  db.user.find({where:{id:parseInt(req.params.userId)}}).then(function(user){
+    // res.render("user/TEST_show.ejs", {user:user});
     //TEST
-    // console.log('req.params: ' + req.params);
-    // console.log('req.params.userId' + req.params.userId);
-    // console.log('found user!' +'--' + user.username + '--' + user.email + '--' + user.password)
-    // res.send('You found the user!' + user.username);
+    console.log(user.id + user.username);
+    res.send('found user!: ' + user.id +'--'+user.username);
   })
-
-    //TEST
-    // console.log('/user/:userId route is working!');
-    // res.send('/user/:userId route is working!');
-
 })
+
+
+//LOGIN User
+router.post('/login',function(req,res){
+  //TEST
+  // console.log(req.body.username);
+  // console.log(req.body.password)
+  // res.send('You made it to user login router');
+  db.user.find({where:{username:req.body.username,password:req.body.password}}).then(function(user){
+    //TEST
+    console.log('found user: ' + user.id + '--' + user.username);
+    res.render('user/TEST_show.ejs',{user:user});
+  })
+})
+
+
+//FIND and Show one User
+router.get('/show/:userId',function(req,res){
+
+  db.user.find({where:{id:parseInt(req.params.userId)}}).then(function(user){
+
+    res.render("user/TEST_show.ejs", {user:user});
+
+  });
+})
+
 
 //CREATE new User
 router.post('/', function(req,res){
-  db.user.create({username:req.body.username,email:req.body.email,password:req.body.password})
+  db.user.create({
+    username:   req.body.username,
+    email:      req.body.email,
+    password:   req.body.password
+  })
   .then(function(user){
+    console.log('username: ' + user.username);
+    console.log('email: ' + user.email);
+    console.log('password: ' + user.password);
+    console.log('userId: ' + user.id)
+    res.redirect('user/show/' + user.id);
     // console.log('DB Entry worked! created new user' + user +'--'+ user.id +'--'+ user.username +'--'+ user.email +'--' + user.password);
     // res.send('DB entry worked! created new user:' +'--'+ user.id +'--'+ user.username +'--'+ user.email +'--' + user.password);
   })
-
-  //TEST
-  // console.log('POST /user route is working!');
-  // console.log(req.body);
-  // console.log('req.body.username: ' + req.body.username);
-  // console.log('req.body.email: ' + req.body.email);
-  // console.log('req.body.password: ' + req.body.password);
-  // res.send(req.body);
-  // res.send('req.body.username: ' + req.body.username);
-  // res.send('req.body.email: ' + req.body.email);
-  // res.send('req.body.password: ' + req.body.password);
 });
 
 
@@ -71,10 +82,9 @@ router.put('/:userId',function(req,res){
       // console.log('update worked! username changed to:' + user.username)
     })
   })
-
   //TEST
-  // console.log('PUT /user/:userId  is working!!');
-  // res.send('PUT /user/:userId  is working!!');
+  console.log('PUT /user/:userId  is working!!');
+  res.send('PUT /user/:userId  is working!!');
 })
 
 
@@ -85,16 +95,11 @@ router.delete('/:userId',function(req,res){
     user.destroy().then(function(){
 
         //TEST
-        // console.log('DELETE /user/:userId  worked!!');
-        // res.send('DELETE /user/:userId  worked!!');
-
+        console.log('DELETE /user/:userId  worked!!');
+        res.send('DELETE /user/:userId  worked!!');
     })
   })
 })
-
-
-
-
 
 
 module.exports = router;
