@@ -54,6 +54,8 @@ router.get('/show/:userId',function(req,res){
 })
 
 
+
+
 //CREATE new User
 router.post('/', function(req,res){
   db.user.create({

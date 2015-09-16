@@ -22,6 +22,24 @@ router.get('/', function(req,res){
   // res.send('actionController.js works!!');
 })
 
+
+//FIND all Actions the belong to a Commitment
+router.post('/show/commitment',function(req,res){
+  db.commitment.find({where:{ id: parseInt(req.body.commitmentId)}}).then(function(commitment){
+    db.action.findAll({where:{commitmentId:parseInt(commitment.id)}}).then(function(action){
+      if(action){
+        action.forEach(function(taco){
+          console.log(taco.id)
+          console.log(taco.description)
+
+        })
+      } res.send('found all actions for commitment:' + commitment.id);
+    })
+  })
+})
+
+
+
 //FIND and Show one Action
 router.get('/:actionId',function(req,res){
 
@@ -59,6 +77,8 @@ router.post('/',function(req,res){
   // res.send(req.body);
 })
 
+
+
 //UPDATE an Action
 router.put('/:actionId', function(req,res){
   db.action.find({where:{id:parseInt(req.params.actionId)}}).then(function(action){
@@ -69,6 +89,8 @@ router.put('/:actionId', function(req,res){
     })
   })
 })
+
+
 
 //DELETE an Action
 router.delete('/:actionId',function(req,res){
