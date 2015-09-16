@@ -1,8 +1,29 @@
 <h1>TEST - Show Commitment Page</h1>
 
-<h3>Commitment Description</h3>
-<h4>
-  <%=commitment.id %>
-  <%=commitment.description %>
+<div class="container">
+  <div class="row">
+    <h3>Commitment Description</h3>
+    <h4>
+      <%=commitment.id %>
+      <%=commitment.description %>
+    </h4>
+  </div>
 
-</h4>
+  <div class="row">
+    <h3>TEST - Enter an Action</h3>
+    <form method="post" action="/api/action">
+      <div id="enterAction" class="form-group">
+        <label>Description:</label>
+        <input name="description" type="text" placeholder="description"><br/>
+
+        <label>Completed?:</label>
+        <input name="completed" type="boolean" placeholder="completed?"><br/>
+
+        <label>CommitmentId:<%= commitment.id %></label>
+        <input name="commitmentId" type="hidden" value="<%= commitment.id %>"
+
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</div>

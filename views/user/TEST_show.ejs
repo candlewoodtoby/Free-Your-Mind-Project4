@@ -11,7 +11,7 @@
   <div class="row">
     <h1>TEST - Enter a Commitment</h1>
     <form method="post" action="/api/commitment">
-      <div class="form-group">
+      <div id="enterCommitment" class="form-group">
         <label>Description:</label>
         <input name="description" type="text" placeholder="description" class="form-control"><br/>
 
@@ -51,7 +51,7 @@
         <label>Completed:</label>
         <input name="completed" type="boolean" placeholder="Completed? T/F" class="form-control"><br/>
 
-        <label>UserId:</label>
+        <label>UserId: <%= user.id %></label>
         <input name="userId" type="hidden" value="<%= user.id %>">
       </div>
       <button type="submit">Submit</button>
