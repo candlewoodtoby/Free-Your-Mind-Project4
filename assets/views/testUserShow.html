@@ -1,0 +1,10 @@
+<h1>Welcome to the Test User Show Page!</h1>
+
+<div ng-controller="TestUserCtrl">
+
+  <ul>
+
+      <li class="well" ng-repeat="user in users track by $index">{{user.id}}--{{user.username}}--{{user.password}}</li>
+
+  </ul>
+</div>

@@ -2,16 +2,19 @@ var express = require('express');
 var router = express.Router();
 
 router.get('/', function(req,res){
-  res.render('pages/index');
+  console.log("pagesController still working!")
+  res.render('index');
 })
 
 router.get('/signUp', function(req,res){
+  //TEST
   // console.log("pagesController.js working!");
-  res.render('user/TEST_new');
+  // res.render('user/TEST_new');
 })
 
 router.get('/logIn', function(req,res){
-  res.render('user/TEST_login');
+  //TEST
+  // res.render('user/TEST_login');
 })
 
 module.exports = router;

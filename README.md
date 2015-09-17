@@ -12,3 +12,8 @@ Resolved to keep user entered data in front end via angular's $scope and then db
 
 2. Issue - I wrote test CRUD operations for commitmentController without associations.
 
+3. completed preliminary setup of backend API routes for action, commitment, user, pages.
+
+4. completed preliminary db CRUD operations for action, commitment, and user.
+
+5. considering nested resources for route paths

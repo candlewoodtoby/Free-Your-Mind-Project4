@@ -14,7 +14,7 @@ router.get('/', function(req,res){
         console.log(taco.description);
         console.log(taco.completed)
       })
-    } res.send('found actions!')
+    } res.send(action);
 
   })
   //TEST

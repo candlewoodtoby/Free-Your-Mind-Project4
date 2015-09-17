@@ -13,6 +13,8 @@ app.set('view engine','ejs');
 app.use(ejsLayouts);
 app.use(bodyParser.urlencoded({extended:true}));
 
+app.use(express.static(__dirname + '/assets'));
+
 
 app.use('/', pagesController);
 app.use('/logIn', pagesController);

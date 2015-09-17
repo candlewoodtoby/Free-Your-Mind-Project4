@@ -12,8 +12,10 @@ router.get('/', function(req,res){
     users.forEach(function(taco){
     console.log('All users: ' + taco.id + '--'+ taco.username + '--' + taco.email + '--' + taco.password);
     })};
-    res.send('found all users!');
+    //Sends array of users to angular view
+    res.send(users);
   })
+
 })
 
 

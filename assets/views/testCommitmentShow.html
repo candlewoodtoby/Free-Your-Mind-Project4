@@ -1,0 +1,10 @@
+<h1>Welcome to the Test Commitment Show Page!</h1>
+
+<div ng-controller="TestCommitmentCtrl">
+
+  <ul>
+
+      <li class="well" ng-repeat="commitment in commitments track by $index">{{commitment.id}}--{{commitment.description}}</li>
+
+  </ul>
+</div>

@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Free Your Mind</title>
+  <title>Free Your Mind App</title>
+  <base href="/">
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-MfvZlkHCEqatNoGiOXveE8FIwMzZg4W85qfrfIFBfYc= sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
-</head>
-<body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.5/angular.js"></script>
+<!--   // <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.5/angular.min.js"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.5/angular-route.js"></script>
 
-  <nav class="navbar navbar-default">
-    <div class="container-fluid">
-      <ul class="nav nav-tabs">
-        <li><a href="/">Home</a></li>
-        <li><a href="/login">Log-In</a></li>
-        <li><a href="/signUp">Sign-Up</a></li>
-        <li><a href="#">Commitment</a></li>
-      </ul>
-    </div>
-  </nav>
+<!--load client JS files here!! -->
+  <script src="/js/app.js"></script>
+  <script src="/js/controllers/HomeCtrl.js"></script>
+  <script src="/js/controllers/TestUserCtrl.js"></script>
+  <script src="/js/controllers/TestCommitmentCtrl.js"></script>
+</head>
+
+<body>
 
   <div class="container">
     <%- body %>

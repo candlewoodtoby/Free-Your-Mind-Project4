@@ -13,7 +13,7 @@ router.get('/',function(req,res){
         console.log(taco.id);
         console.log(taco.description)
       })
-    } res.send('found commitments!')
+    } res.send(commitment)
 
   })
 })
