@@ -17,3 +17,5 @@ Resolved to keep user entered data in front end via angular's $scope and then db
 4. completed preliminary db CRUD operations for action, commitment, and user.
 
 5. considering nested resources for route paths
+
+

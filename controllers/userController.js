@@ -26,7 +26,7 @@ router.get('/:userId',function(req,res){
     // res.render("user/TEST_show.ejs", {user:user});
     //TEST
     console.log(user.id + user.username);
-    res.send('found user!: ' + user.id +'--'+user.username);
+    res.send(user);
   })
 })
 
@@ -37,10 +37,19 @@ router.post('/login',function(req,res){
   // console.log(req.body.username);
   // console.log(req.body.password)
   // res.send('You made it to user login router');
-  db.user.find({where:{username:req.body.username,password:req.body.password}}).then(function(user){
+  // console.log('req.body: ' , req.body)
+
+  db.user.find({where:{email:req.body.email}}).then(function(user){
     //TEST
-    console.log('found user: ' + user.id + '--' + user.username);
-    res.render('user/TEST_show.ejs',{user:user});
+    // console.log('found user.email: ' + user.email + '--' + 'password: '+ user.password + 'user.id: ' + user.id);
+    console.log('API db sending to $http this user:', user.username);
+    // res.redirect('show/' + user.id);
+    // res.render('user/TEST_show.ejs',{user:user});
+    if(user){
+      res.send({result:true, user:user});
+    }else{
+      res.send({result:false});
+    }
   })
 })
 
@@ -50,7 +59,7 @@ router.get('/show/:userId',function(req,res){
 
   db.user.find({where:{id:parseInt(req.params.userId)}}).then(function(user){
 
-    res.render("user/TEST_show.ejs", {user:user});
+    res.send(user);
 
   });
 })
@@ -70,7 +79,7 @@ router.post('/', function(req,res){
     console.log('email: ' + user.email);
     console.log('password: ' + user.password);
     console.log('userId: ' + user.id)
-    res.redirect('user/show/' + user.id);
+    res.redirect('show/' + user.id);
     // console.log('DB Entry worked! created new user' + user +'--'+ user.id +'--'+ user.username +'--'+ user.email +'--' + user.password);
     // res.send('DB entry worked! created new user:' +'--'+ user.id +'--'+ user.username +'--'+ user.email +'--' + user.password);
   })
@@ -80,16 +89,21 @@ router.post('/', function(req,res){
 //UPDATE a User
 router.put('/:userId',function(req,res){
 
-  db.user.find({where:{id:req.params.userId}}).then(function(user){
-    user.username = 'Taco Jones';
-    user.save().then(function(user){
-      // console.log('update worked! username changed to:' + user.username)
+  db.user.find({where:{id:parseInt(req.params.userId)}}).then(function(user){
+//     // user.username = 'Taco Jones';
+//     // user.save().then(function(user){
+//     //   // console.log('update worked! username changed to:' + user.username)
+//     //   // res.redirect('show/' + user.id);
+      console.log('user.id:' + user.id);
+      res.send(user);
+      // res.redirect('show/' + user.id);
+      // res.redirect('show/' + user.id);
     })
   })
-  //TEST
-  console.log('PUT /user/:userId  is working!!');
-  res.send('PUT /user/:userId  is working!!');
-})
+//   //TEST
+//   // console.log('PUT /user/:userId  is working!!');
+//   // res.redirect('show/' + user.id);
+// })
 
 
 //DELETE a User

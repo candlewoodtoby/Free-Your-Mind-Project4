@@ -11,17 +11,19 @@ var actionController = require('./controllers/actionController.js');
 
 app.set('view engine','ejs');
 app.use(ejsLayouts);
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 
 app.use(express.static(__dirname + '/assets'));
 
 
-app.use('/', pagesController);
 app.use('/logIn', pagesController);
 app.use('/signUp', pagesController);
 
 app.use('/api/user', userController);
 app.use('/api/commitment', commitmentController);
 app.use('/api/action', actionController);
+
+app.use(pagesController);
 
 app.listen(3000);

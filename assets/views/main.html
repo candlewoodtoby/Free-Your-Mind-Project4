@@ -1,0 +1,160 @@
+<div class="container-fluid">
+  <div class="row" ng-controller="MainCtrl">
+      <div class='col-xs-4'>
+        <h4>In-Basket</h4>
+
+        <h4>{{date|date}}</h4>
+
+        <h5>Current Username: {{currentUser.username}}</h5>
+        <h5>email:{{currentUser.email}}</h5>
+        <h5>id: {{currentUser.id}}</h5>
+
+
+        <alert type="danger" ng-show="errorMsg" dismiss-on-timeout="2000" close="errorMsg=false">
+            {{errorMsg}}
+        </alert>
+
+<!--           <div class='form-group'>
+            <label for="">Filter Commitments</label>
+            <input ng-model="searchTerm" type="text"
+            class="form-control" id="" placeholder="Search your commitments">
+          </div> -->
+
+
+          <form role="form" ng-submit="addCommitment()">
+            <div class="form-group">
+              <label for="">Commitment Description</label>
+              <input ng-model="commitmentText" type="text" class="form-control" id="" placeholder="Enter commitment">
+            </div>
+            <button type="submit" class="btn btn-primary">Add Commitment</button>
+          </form>
+
+
+          <ul>
+            <li ng-repeat="commitment in commitmentArray | filter:searchTerm:strict"
+            ng-class="{'completed':commitment.completed}" class="commitment">
+
+                <h5><input type="checkbox" ng-model="commitment.completed">
+
+                <a href="#" ng-click="processCommitment($index, commitment)">--{{$index}}--{{commitment.description}}</a>
+
+                <a href="#" ng-click="removeCommitment($index)">X</a></h5>
+
+            </li>
+          </ul>
+
+      </div>
+
+      <div class='col-xs-4'>
+          <h4>Process Commitments</h4>
+
+
+          <h5>Current Commitment:</h5>
+
+          <h6>{{currentCommitmentIdx}}--{{currentCommitment.description}}</h6>
+
+          <div>
+            <h5>Is this commitment Actionable? {{currentCommitmentActionable}}</h5>
+            <input ng-click="currentCommitmentActionable = true" type="button" class="btn btn-default" value="Yes">
+            <input ng-click="currentCommitmentActionable = false" type="button" class="btn btn-default" value="No">
+          </div>
+
+          <div ng-show="currentCommitmentActionable">
+
+            <div>
+              <h5>Finish this commitment in less than 2 minutes? {{currentCommitmentLessThanTwo}}</h5>
+              <input ng-click="currentCommitmentLessThanTwo = true" type="button" class="btn btn-default" value="Yes">
+              <input ng-click="currentCommitmentLessThanTwo = false" type="button" class="btn btn-default" value="No">
+            </div>
+
+            <div ng-show="currentCommitmentLessThanTwo">
+              <h5>DO IT NOW!</h5>
+            </div>
+
+            <div ng-hide="currentCommitmentLessThanTwo">
+              <div>
+
+                <h5>Do It Specified Time in Future? {{currentCommitmentDoItLater}}</h5>
+                  <input ng-click="currentCommitmentDoItLater = true" type="button" class="btn btn-default" value="Yes">
+                  <input ng-click="currentCommitmentDoItLater = false" type="button" class="btn btn-default" value="No">
+              </div>
+
+              <div ng-if="currentCommitmentDoItLater">
+                <h5>Calendar</h5>
+                <input ng-model="currentCommitmentCalendar" type="date">
+              </div>
+
+              <div ng-if="!currentCommitmentDoItLater">
+                 <h5>Do It Whenever {{currentCommitmentDoItWhenever}}</h5>
+                  <input ng-click="currentCommitmentDoItWhenever = true" type="button" class="btn btn-default" value="Yes">
+                  <input ng-click="currentCommitmentDoItWhenever = false" type="button" class="btn btn-default" value="No">
+              </div>
+
+              <div>
+                <h5>Delegate this commitment? {{currentCommitDelegate}}</h5>
+                  <input ng-click="currentCommitmentDelegate = true" type="button" class="btn btn-default" value="Yes">
+                  <input ng-click="currentCommitmentDelegate = false" type="button" class="btn btn-default" value="No">
+
+                <div ng-if="currentCommitmentDelegate">
+                  <label for="delegateName">Delegate Name: {{currentCommitmentDelegateName}}</label><br/>
+                  <input id="delegateName" ng-model="currentCommitmentDelegateName" type="text" placeholder="Enter Delegagte Name">
+                </div>
+              </div>
+
+              <div>
+                <h5>Add Next Actions for This Commitment?</h5>
+                <input ng-click="currentCommitmentNextAction = true" type="button" class="btn btn-default" value="Yes">
+                <input ng-click="currentCommitmentNextAction = false" type="button" class="btn btn-default" value="No">
+              </div>
+
+            </div>
+          </div>
+
+          <div ng-hide="currentCommitmentActionable">
+<!--             <h5>Current Commitment is not Actionable!</h5> -->
+          </div>
+
+
+
+
+
+      </div>
+
+      <div class='col-xs-4'>
+          <h4>Action Column</h4>
+        <div ng-show="currentCommitmentNextAction">
+
+          <form role="form" ng-submit="addAction()">
+            <div class="form-group">
+              <label for="">Action Description</label>
+              <input ng-model="actionText" type="text" class="form-control" id="" placeholder="Enter action">
+            </div>
+            <button type="submit" class="btn btn-primary">Add Action</button>
+          </form>
+
+
+          <ul>
+            <li ng-repeat="action in actionArray" ng-class="{'completed':action.completed}" class="action">
+
+                <h5><input type="checkbox" ng-model="action.completed">
+
+                <a href="#" ng-click="isItActionable($index, action)">--{{$index}}--{{action.description}}</a>
+
+                <a href="#" ng-click="removeAction($index)">X</a></h5>
+
+            </li>
+          </ul>
+
+        </div>
+
+      </div>
+
+  </div>
+
+</div>
+
+
+
+
+
+
