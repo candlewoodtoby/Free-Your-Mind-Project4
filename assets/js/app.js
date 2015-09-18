@@ -33,6 +33,10 @@ myFymApp.config(['$routeProvider', '$locationProvider', function($routeProvider,
     templateUrl:'/views/show.html',
     controller:'ShowCtrl'
   })
+  .when('/signup',{
+    templateUrl:'/views/signup.html',
+    controller:'SignupCtrl'
+  })
   .otherwise({
     templateUrl:'/views/404.html'
   });

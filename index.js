@@ -26,4 +26,4 @@ app.use('/api/action', actionController);
 
 app.use(pagesController);
 
-app.listen(process.env.PORT || 80);
+app.listen(3000);
