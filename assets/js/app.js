@@ -10,8 +10,12 @@ myFymApp.config(['$routeProvider', '$locationProvider', function($routeProvider,
 
   $routeProvider
   .when('/',{
-    templateUrl:'/views/home.html',
+    templateUrl:'views/home.html',
     controller:'HomeCtrl'
+  })
+  .when('/main',{
+    templateUrl:'views/main.html',
+    controller:'MainCtrl'
   })
   .when('/test/userAllShow',{
     templateUrl:'/views/testUserShow.html',
@@ -24,10 +28,6 @@ myFymApp.config(['$routeProvider', '$locationProvider', function($routeProvider,
   .when('/login',{
     templateUrl:'/views/login.html',
     controller:'loginCtrl'
-  })
-  .when('/main',{
-    templateUrl:'views/main.html',
-    controller:'MainCtrl'
   })
   .otherwise({
     templateUrl:'/views/404.html'
