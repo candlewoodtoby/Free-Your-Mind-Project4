@@ -1,4 +1,13 @@
-
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <ul class="nav navbar-nav">
+      <a href="/">Home</a>
+      <a href="/main">Main</a>
+      <a href="/login">Login</a>
+      <a href="/show">Show</a>
+    </ul>
+  </div>
+</nav>
 
 <div class="container" ng-controller="ShowCtrl">
   <div class="row">
@@ -9,19 +18,19 @@
       </div>
       <table class="table table-striped">
         <tr>
-          <th></th><th>Id</th><th>Description</th>
+          <th><h4>Id</h4></th><th><h4>Description</h4></th>
         </tr>
 
         <tr class="well" ng-repeat="commitment in commitments track by $index">
           <!-- <td><button ng-model="commitment.id" ng-click="findAllActions()" class="btn btn-sm">Actions</button></td> -->
-          <td>{{commitment.id}}</td>
-          <td>{{commitment.description}}</td>
+          <td><h4>{{commitment.id}}</h4></td>
+          <td><h4>{{commitment.description}}</h4></td>
         </tr>
 
       </table>
     </div>
 
-    <div class='col-md-6'>
+<!--     <div class='col-md-6'>
       <div class="well">
         <button ng-click="findAllActions()" class="btn btn-primary">Find all Actions</button>
       </div>
@@ -31,13 +40,14 @@
         </tr>
 
         <tr class="well" ng-repeat="action in actions">
-          <!-- <td><button ng-model="commitment.id" ng-click="findAllActions()" class="btn btn-sm">Actions</button></td> -->
+          <td><button ng-model="commitment.id" ng-click="findAllActions()" class="btn btn-sm">Actions</button></td>
           <td>{{action.id}}</td>
           <td>{{action.description}}</td>
         </tr>
 
       </table>
-    </div>
+    </div> -->
+
   </div>
 
 </div>

@@ -10,24 +10,25 @@ myFymApp.controller('ShowCtrl',['$scope','$http', '$rootScope','$location',funct
         // $scope.commitments=commitments.data;
         $scope.commitments = commitments.data
       });
+    console.log("you are in showCtrl findAllCommitments");
 
     }
 
-    $scope.findAllActions = function(){
-        $scope.commitments.forEach(function(taco){
+    // $scope.findAllActions = function(){
+    //     $scope.commitments.forEach(function(taco){
 
-          $http({
-            method:'POST',
-            url:'/api/action/show/commitment',
-            data:{commitmentId:taco.id}
-          }).then(function(actions){
-            // $scope.actions = actions;
-            // console.log(actions);
+    //       $http({
+    //         method:'POST',
+    //         url:'/api/action/show/commitment',
+    //         data:{commitmentId:taco.id}
+    //       }).then(function(actions){
+    //         // $scope.actions = actions;
+    //         // console.log(actions);
 
-            }
-          })
-        })
-      // console.log($scope.commitment);
-    }
+    //         })
+    //       })
+    //     })
+    //   // console.log($scope.commitment);
+    // }
 
 }])
