@@ -27,13 +27,14 @@ router.get('/', function(req,res){
 router.post('/show/commitment',function(req,res){
   db.commitment.find({where:{ id: parseInt(req.body.commitmentId)}}).then(function(commitment){
     db.action.findAll({where:{commitmentId:parseInt(commitment.id)}}).then(function(action){
-      if(action){
-        action.forEach(function(taco){
-          console.log(taco.id)
-          console.log(taco.description)
+      // if(action){
+      //   action.forEach(function(taco){
+      //     console.log(taco.id)
+      //     console.log(taco.description)
 
-        })
-      } res.send('found all actions for commitment:' + commitment.id);
+      //   })
+      // } res.send('found all actions for commitment:' + commitment.id);
+      res.send(action);
     })
   })
 })

@@ -4,6 +4,7 @@
       <a href="/">Home</a>
       <a href="/main">Main</a>
       <a href="/login">Login</a>
+      <a href="/show">Show</a>
     </ul>
   </div>
 </nav>
@@ -93,7 +94,7 @@
           <div ng-show="currentCommitmentActionable">
 
             <div class="well">
-              <h5>Can you finish this commitment in less than 2 minutes? [{{currentCommitmentLessThanTwo}}]</h5>
+              <h5>Complete this commitment in less than 2 minutes? [{{currentCommitmentLessThanTwo}}]</h5>
               <input ng-model="currentCommitmentLessThanTwo" ng-click="currentCommitmentLessThanTwo = true"
                     ng-model="currentCommitmentDoItNow" ng-click="currentCommitmentDoItNow = false"
                     type="button" class="btn btn-default" value="Yes">
@@ -109,7 +110,7 @@
             <div class="well" ng-hide="currentCommitmentLessThanTwo">
               <div class="well">
 
-                <h5>Do It Specified Time in Future? [{{currentCommitmentDoItLater}}]</h5>
+                <h5>Complete this commitment on specific date? [{{currentCommitmentDoItLater}}]</h5>
                   <input ng-model="currentCommitmentDoItLater" ng-click="currentCommitmentDoItLater = true" type="button" class="btn btn-default" value="Yes">
                   <input ng-model="currentCommitmentDoItLater" ng-click="currentCommitmentDoItLater = false" type="button" class="btn btn-default" value="No">
 
@@ -121,7 +122,7 @@
               </div>
 
               <div class="well" ng-if="!currentCommitmentDoItLater">
-                 <h5>Do It Whenever [{{currentCommitmentDoItWhenever}}]</h5>
+                 <h5>Complete this commitment any time? [{{currentCommitmentDoItWhenever}}]</h5>
                   <input ng-model="currentCommitmentDoItWhenever" ng-click="currentCommitmentDoItWhenever = true" type="button" class="btn btn-default" value="Yes">
                   <input ng-model="currentCommitmentDoItWhenever" ng-click="currentCommitmentDoItWhenever = false" type="button" class="btn btn-default" value="No">
               </div>

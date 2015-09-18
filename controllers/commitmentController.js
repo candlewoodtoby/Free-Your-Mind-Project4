@@ -23,15 +23,15 @@ router.post('/show/user',function(req,res){
   db.user.find({where:{ id: parseInt(req.body.userId) }}).then(function(user){
     db.commitment.findAll({where:{userId:parseInt(user.id)}}).then(function(commitment){
 
-      if(commitment){
-        commitment.forEach(function(taco){
-          //TEST
-          console.log('commitment id: ' + taco.id);
-          console.log('commitment description: ' + taco.description);
-          console.log('commitment belongs to user: ' + user.username);
-        })
-
-      } res.send('found commitments!');
+      // if(commitment){
+      //   commitment.forEach(function(taco){
+      //     //TEST
+      //     console.log('commitment id: ' + taco.id);
+      //     console.log('commitment description: ' + taco.description);
+      //     console.log('commitment belongs to user: ' + user.username);
+      //   })
+    res.send(commitment);
+      // } res.send('found commitments!');
       //TEST
       // console.log(commitments);
       // res.send('You found all of ' + user.username + ' commitments!');
