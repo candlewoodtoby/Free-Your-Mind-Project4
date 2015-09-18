@@ -23,6 +23,7 @@
     "express-ejs-layouts": "^1.1.0",
     "pg": "^4.4.1",
     "pg-hstore": "^2.3.2",
-    "sequelize": "^3.8.0"
+    "sequelize": "^3.8.0",
+    "sequelize-cli": "^1.9.1"
   }
 }
