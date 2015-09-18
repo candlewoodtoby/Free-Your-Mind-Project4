@@ -1,7 +1,31 @@
-<div class="container" ng-controller="loginCtrl">
-  <h1>Log In Show Page</h1>
+  <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <ul class="nav navbar-nav">
+      <a href="/">Home</a>
+      <a href="/main">Main</a>
+      <a href="/login">Login</a>
 
+    </ul>
+  </div>
+</nav>
+<!-- <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <ul class="nav navbar-nav">
+      <a href="/">Home</a>
+      <a href="/main">Main</a>
+
+    </ul>
+  </div>
+</nav>
+
+
+<div class="container" ng-controller="loginCtrl">
   <div class="row">
+    <h1>Free Your Mind</h1>
+  </div> -->
+
+  <div class="row jumbotron">
+    <h3>Login</h3>
     <form ng-submit="submit()">
         <input name="email" ng-model="email" placeholder="email">
         <input name="password" ng-model="password" type="password" placeholder="password">

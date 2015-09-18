@@ -1,4 +1,7 @@
-myFymApp.controller('MainCtrl',['$scope',function($scope){
+
+
+
+myFymApp.controller('MainCtrl',['$scope','$http', function($scope, $http){
   console.log('MainCtrl.js working!');
 
   $scope.date = new Date();
@@ -9,6 +12,8 @@ myFymApp.controller('MainCtrl',['$scope',function($scope){
 
   $scope.actionText = "";
   $scope.actionArray = [];
+
+  // $scope.delegateName = [];
 
 
 
@@ -30,23 +35,6 @@ myFymApp.controller('MainCtrl',['$scope',function($scope){
   // $scope.currentCommitmentNextAction = null;
   // $scope.currentAction = null;
   // $scope.currentActionIdx = null;
-  $scope.Test = function (){
-        console.log('description:',  $scope.commitmentArray[$scope.currentCommitmentIdx].description);
-        console.log('actionable:',   $scope.currentCommitmentActionable);
-        console.log('trash:',        $scope.currentCommitmentTrash);
-        console.log('someday:',      $scope.currentCommitmentSomeday);
-        console.log('reference:',    $scope.currentCommitmentReference);
-        console.log('lessThanTwo:',  $scope.currentCommitmentLessThanTwo);
-        console.log('doItNow:',      $scope.currentCommitmentDoItNow);
-        console.log('doItLater:',    $scope.currentCommitmentDoItLater);
-        console.log('doItWhenever:', $scope.currentCommitmentDoItWhenever);
-        console.log('delegate:',     $scope.currentCommitmentDelegate);
-        console.log('delegateName:', $scope.currentCommitmentDelegateName);
-        console.log('calendar:',     $scope.currentCommitmentCalendar);
-        console.log('completed:',    $scope.currentCommitmentCompleted);
-        console.log('userId:',       $scope.currentUserId);
-        console.log('actionArray:',  $scope.actionArray)
-  }
 
 
   $scope.addCommitment = function(){
@@ -63,10 +51,10 @@ myFymApp.controller('MainCtrl',['$scope',function($scope){
         doItLater:    $scope.currentCommitmentDoItLater,
         doItWhenever: $scope.currentCommitmentDoItWhenever,
         delegate:     $scope.currentCommitmentDelegate,
-        delegateName: $scope.currentCommitmentDelegateName,
+        delegateName: $scope.delegateName,
         calendar:     $scope.currentCommitmentCalendar,
         completed:    $scope.currentCommitmentCompleted,
-        userId:       $scope.currentCommitmentUserId,
+        userId:       $scope.currentUser.id,
         actionArray:  $scope.actionArray,
         completed:false
       });
@@ -89,11 +77,10 @@ myFymApp.controller('MainCtrl',['$scope',function($scope){
     $scope.currentCommitment = currentCommitment;
     $scope.currentCommitmentIdx = idx;
 
-    //clear data
+    // clear data
     $scope.currentCommitmentActionable=null;
     $scope.currentCommitmentLessThanTwo=null;
     $scope.currentCommitmentDoItLater=null;
-
 
   }
 
@@ -118,12 +105,69 @@ myFymApp.controller('MainCtrl',['$scope',function($scope){
     $scope.currentAction = currentAction;
     $scope.currentActionIdx = idx;
 
-
-
   }
 
   $scope.removeAction = function(idx){
     $scope.actionArray.splice(idx,1);
   }
+
+  $scope.addName = function(){
+    $scope.delegateName = $scope.currentCommitmentDelegateName;
+    console.log($scope.delegateName);
+  }
+
+
+
+
+  $scope.submit = function(){
+    // console.log('This Button Works!');
+        $http({
+          method: 'POST',
+          url: '/api/commitment/',
+          data: {
+            description:  $scope.commitmentArray[$scope.currentCommitmentIdx].description,
+            actionable:   $scope.currentCommitmentActionable,
+            trash:        $scope.currentCommitmentTrash,
+            someday:      $scope.currentCommitmentSomeday,
+            reference:    $scope.currentCommitmentReference,
+            lessThanTwo:  $scope.currentCommitmentLessThanTwo,
+            doItNow:      $scope.currentCommitmentDoItNow,
+            doItLater:    $scope.currentCommitmentDoItLater,
+            doItWhenever: $scope.currentCommitmentDoItWhenever,
+            delegate:     $scope.currentCommitmentDelegate,
+            delegateName: $scope.delegateName,
+            calendar:     $scope.currentCommitmentCalendar,
+            completed:    $scope.currentCommitmentCompleted,
+            userId:       $scope.currentUser.id
+          }
+        }).then(function(commitment){
+          console.log(commitment);
+        })
+  }
+
+
+
+
+  $scope.Test = function (){
+        console.log('description:',  $scope.commitmentArray[$scope.currentCommitmentIdx].description);
+        console.log('actionable:',   $scope.currentCommitmentActionable);
+        console.log('trash:',        $scope.currentCommitmentTrash);
+        console.log('someday:',      $scope.currentCommitmentSomeday);
+        console.log('reference:',    $scope.currentCommitmentReference);
+        console.log('lessThanTwo:',  $scope.currentCommitmentLessThanTwo);
+        console.log('doItNow:',      $scope.currentCommitmentDoItNow);
+        console.log('doItLater:',    $scope.currentCommitmentDoItLater);
+        console.log('doItWhenever:', $scope.currentCommitmentDoItWhenever);
+        console.log('delegate:',     $scope.currentCommitmentDelegate);
+        console.log('delegateName:', $scope.currentCommitmentDelegateName);
+        console.log('calendar:',     $scope.currentCommitmentCalendar);
+        console.log('completed:',    $scope.currentCommitmentCompleted);
+        console.log('userId:',       $scope.currentUser.id);
+        console.log('actionArray:',  $scope.actionArray)
+  }
+
+
+
+
 
 }])

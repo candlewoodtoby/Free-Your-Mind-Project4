@@ -1,13 +1,25 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <ul class="nav navbar-nav">
+      <a href="/">Home</a>
+      <a href="/main">Main</a>
+      <a href="/login">Login</a>
+
+    </ul>
+  </div>
+</nav>
+
+
 <div class="container-fluid">
   <div class="row" ng-controller="MainCtrl">
+        <h4>{{date|date}}</h4>
       <div class='col-xs-4'>
         <h4>In-Basket</h4>
 
-        <h4>{{date|date}}</h4>
 
         <h5>Current Username: {{currentUser.username}}</h5>
         <h5>email:{{currentUser.email}}</h5>
-        <h5>id: {{currentUser.id}}</h5>
+        <h5 ng-model="currentUser.id">id: {{currentUser.id}}</h5>
 
 
 <!--         <alert type="danger" ng-show="errorMsg" dismiss-on-timeout="2000" close="errorMsg=false">
@@ -55,20 +67,27 @@
 
           <div>
             <h5>Is this commitment Actionable? {{currentCommitmentActionable}}</h5>
-            <input ng-model="currentCommitmentActionable" ng-click="currentCommitmentActionable = true" type="button" class="btn btn-default" value="Yes">
-            <input ng-model="currentCommitmentActionable" ng-click="currentCommitmentActionable = false" type="button" class="btn btn-default" value="No">
+            <input ng-model="currentCommitmentActionable" ng-click="currentCommitmentActionable = true"
+                   type="button" class="btn btn-default" value="Yes">
+
+            <input ng-model="currentCommitmentActionable" ng-click="currentCommitmentActionable = false"
+                    type="button" class="btn btn-default" value="No">
           </div>
 
           <div ng-show="currentCommitmentActionable">
 
             <div>
               <h5>Finish this commitment in less than 2 minutes? {{currentCommitmentLessThanTwo}}</h5>
-              <input ng-model="currentCommitmentLessThanTwo" ng-click="currentCommitmentLessThanTwo = true" type="button" class="btn btn-default" value="Yes">
-              <input ng-model="currentCommitmentLessThanTwo" ng-click="currentCommitmentLessThanTwo = false" type="button" class="btn btn-default" value="No">
+              <input ng-model="currentCommitmentLessThanTwo" ng-click="currentCommitmentLessThanTwo = true"
+                    ng-model="currentCommitmentDoItNow" ng-click="currentCommitmentDoItNow = false"
+                    type="button" class="btn btn-default" value="Yes">
+              <input ng-model="currentCommitmentLessThanTwo" ng-click="currentCommitmentLessThanTwo = false"
+                    ng-model="currentCommitmentDoItNow" ng-click="currentCommitmentDoItNow = true"
+                    type="button" class="btn btn-default" value="No">
             </div>
 
             <div ng-show="currentCommitmentLessThanTwo">
-              <h5>DO IT NOW!</h5>
+              <h5>DO IT NOW!</h5> {{currentCommitmentDoItNow}}
             </div>
 
             <div ng-hide="currentCommitmentLessThanTwo">
@@ -81,7 +100,7 @@
 
               <div ng-if="currentCommitmentDoItLater">
                 <h5>Calendar</h5>
-                <input ng-model="currentCommitmentCalendar" type="date">
+                <input ng-model="currentCommitmentCalendar" type="date" >
               </div>
 
               <div ng-if="!currentCommitmentDoItLater">
@@ -95,8 +114,8 @@
                   <input ng-model="currentCommitmentDelegate" ng-click="currentCommitmentDelegate = true" type="button" class="btn btn-default" value="Yes">
                   <input ng-model="currentCommitmentDelegate" ng-click="currentCommitmentDelegate = false" type="button" class="btn btn-default" value="No">
 
-                <form>
-                  <div ng-if="currentCommitmentDelegate">
+                <form role="form" ng-submit="addName()">
+                  <div ng-show="currentCommitmentDelegate">
                     <label for="delegateName">Delegate Name: {{currentCommitmentDelegateName}}</label><br/>
                     <input id="delegateName" ng-model="currentCommitmentDelegateName" type="text" placeholder="Enter Delegagte Name">
                   </div>
@@ -105,7 +124,7 @@
               </div>
 
               <div>
-                <h5>Add Next Actions for This Commitment?</h5>
+                <h5>Add Next Actions for This Commitment? {{currentCommitmentNextAction}} </h5>
                 <input ng-model="currentCommitmentNextAction" ng-click="currentCommitmentNextAction = true" type="button" class="btn btn-default" value="Yes">
                 <input ng-model="currentCommitmentNextAction" ng-click="currentCommitmentNextAction = false" type="button" class="btn btn-default" value="No">
               </div>
@@ -114,7 +133,23 @@
           </div>
 
           <div ng-hide="currentCommitmentActionable">
-<!--             <h5>Current Commitment is not Actionable!</h5> -->
+            <div>
+               <h5>Discard this Commitment {{currentCommitmentTrash}}</h5>
+               <input ng-model="currentCommitmentTrash" ng-click="currentCommitmentTrash = true" type="button" class="btn btn-default" value="Yes">
+               <input ng-model="currentCommitmentTrash" ng-click="currentCommitmentTrash = false" type="button" class="btn btn-default" value="No">
+            </div>
+
+            <div>
+               <h5>Remind me of this Commitment in the future {{currentCommitmentSomeday}} </h5>
+               <input ng-model="currentCommitmentSomeday" ng-click="currentCommitmentSomeday = true" type="button" class="btn btn-default" value="Yes">
+               <input ng-model="currentCommitmentSomeday" ng-click="currentCommitmentSomeday = false" type="button" class="btn btn-default" value="No">
+            </div>
+
+            <div>
+               <h5>Keep This Commitment as a Reference {{currentCommitmentReference}} </h5>
+               <input ng-model="currentCommitmentReference" ng-click="currentCommitmentReference = true" type="button" class="btn btn-default" value="Yes">
+               <input ng-model="currentCommitmentReference" ng-click="currentCommitmentReference = false" type="button" class="btn btn-default" value="No">
+            </div>
           </div>
 
 
@@ -150,7 +185,7 @@
 
         </div>
 
-        <button ng-click="Test()" class="btn btn-primary">Final</button>
+        <button ng-click="submit()" class="btn btn-primary">Submit</button>
 
       </div>
 
