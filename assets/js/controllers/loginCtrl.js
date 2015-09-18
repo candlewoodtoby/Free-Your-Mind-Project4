@@ -13,6 +13,8 @@ myFymApp.controller('loginCtrl',['$scope','$http', '$rootScope','$location',func
         //   console.log(user)
         // })
 
+        // data: {commitments: $scope.commitmentArray}
+
         $http({
           method: 'POST',
           url: '/api/user/login',
